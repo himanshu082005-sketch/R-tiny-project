@@ -1,0 +1,178 @@
+---
+title: "Tiny_project"
+author: "Himanshu Singh 2505101270053"
+date: "2026-09-17"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## R Markdown
+
+This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
+
+When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
+```{r}
+Bank_Churn <- read.csv("C:\\Users\\gital\\OneDrive\\Desktop\\tiny project\\himanshu\\Bank_Churn.csv")
+Bank_Churn
+
+```
+
+
+
+```{r}
+head(Bank_Churn)
+```
+
+
+```{r}
+summary(Bank_Churn)
+```
+
+
+```{r}
+
+str(Bank_Churn)
+
+
+```
+
+
+
+```{r}
+
+
+colSums(is.na(Bank_Churn))
+
+
+
+```
+
+
+
+
+```{r}
+
+median(Bank_Churn$Balance)
+
+var(Bank_Churn$Balance)
+sd(Bank_Churn$Balance)
+
+
+```
+
+
+
+```{r}
+
+
+gender_count <- table(Bank_Churn$Gender)
+
+gender_count
+
+
+```
+
+
+
+```{r}
+
+
+pie(
+  gender_count,
+  main = "Gender Distribution",
+  labels = paste(
+    names(gender_count),
+    gender_count
+  )
+)
+
+
+
+```
+
+```{r}
+result_count <- table(Bank_Churn$IsActiveMember)
+names(result_count) <- c("Inactive", "Active")
+
+
+```
+
+
+
+```{r}
+pie(
+  result_count,
+  main = "Bank Member Distribution",
+  labels = paste(
+    names(result_count),
+    result_count
+  )
+)
+
+
+```
+
+
+```{r}
+barplot(
+  Bank_Churn$CreditScore,
+  names.arg = Bank_Churn$Surname,
+  main = "Bank CreditScore",
+  xlab = "Bank",
+  ylab = "CreditScore",
+  las = 2
+)
+
+
+```
+
+
+
+```{r}
+barplot(
+  Bank_Churn$I,
+  names.arg = Bank_Churn$Surname,
+  main = "Bank Active member",
+  xlab = "Name",
+  ylab = "Active Member (%)",
+  las = 2
+)
+
+
+```
+
+
+```{r}
+
+cor(
+  Bank_Churn$IsActiveMember,
+  Bank_Churn$Balance
+)
+
+```
+
+
+
+
+
+
+## Including Plots
+
+You can also embed plots, for example:
+
+```{r pressure, echo=FALSE}
+plot(
+  Bank_Churn$IsActiveMember,
+  Bank_Churn$Balance,
+  main = "IsActiveMember vs Balance",
+  xlab = "IsActiveMember (%)",
+  ylab = "Balance",
+  pch = 19
+)
+
+```
+
+Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
